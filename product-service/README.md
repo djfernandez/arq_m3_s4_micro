@@ -30,26 +30,26 @@ src/main/java/com/tecsup/app/micro/product/
 │   └── service/
 │       └── ProductApplicationService.java   # Orquestador de casos de uso
 │
-├── infrastructure/                          # CAPA DE INFRAESTRUCTURA
-│   └── persistence/
-│       ├── entity/
-│       │   └── ProductEntity.java          # Entidad JPA
-│       ├── mapper/
-│       │   └── ProductPersistenceMapper.java # Mapper MapStruct
-│       └── repository/
-│           ├── JpaProductRepository.java    # Spring Data JPA
-│           └── ProductRepositoryImpl.java   # Adaptador
-│
-└── presentation/                            # CAPA DE PRESENTACIÓN
-    ├── controller/
-    │   ├── ProductController.java          # REST Controller
-    │   └── GlobalExceptionHandler.java     # Manejo de excepciones
-    ├── dto/
-    │   ├── CreateProductRequest.java
-    │   ├── UpdateProductRequest.java
-    │   └── ProductResponse.java
-    └── mapper/
-        └── ProductDtoMapper.java           # Mapper MapStruct
+└── infrastructure/                          # CAPA DE INFRAESTRUCTURA
+   ├── persistence/
+   │    ├── entity/
+   │    │   └── ProductEntity.java          # Entidad JPA
+   │    ├── mapper/
+   │    │   └── ProductPersistenceMapper.java # Mapper MapStruct
+   │    └── repository/
+   │        ├── JpaProductRepository.java    # Spring Data JPA
+   │        └── ProductRepositoryImpl.java   # Adaptador
+   │   
+   └── web/                            # CAPA DE PRESENTACIÓN
+        ├── controller/
+        │   ├── ProductController.java          # REST Controller
+        │   └── GlobalExceptionHandler.java     # Manejo de excepciones
+        ├── dto/
+        │   ├── CreateProductRequest.java
+        │   ├── UpdateProductRequest.java
+        │   └── ProductResponse.java
+        └── mapper/
+            └── ProductDtoMapper.java           # Mapper MapStruct
 ```
 
 ## 📊 Flujo de Arquitectura

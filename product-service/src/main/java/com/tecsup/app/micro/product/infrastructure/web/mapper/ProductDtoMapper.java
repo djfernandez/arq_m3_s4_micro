@@ -1,9 +1,10 @@
-package com.tecsup.app.micro.product.presentation.mapper;
+package com.tecsup.app.micro.product.infrastructure.web.mapper;
 
 import com.tecsup.app.micro.product.domain.model.Product;
-import com.tecsup.app.micro.product.presentation.dto.CreateProductRequest;
-import com.tecsup.app.micro.product.presentation.dto.ProductResponse;
-import com.tecsup.app.micro.product.presentation.dto.UpdateProductRequest;
+
+import com.tecsup.app.micro.product.infrastructure.web.dto.CreateProductRequest;
+import com.tecsup.app.micro.product.infrastructure.web.dto.ProductResponse;
+import com.tecsup.app.micro.product.infrastructure.web.dto.UpdateProductRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

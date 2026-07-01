@@ -1,4 +1,4 @@
-package com.tecsup.app.micro.product.presentation.dto;
+package com.tecsup.app.micro.product.infrastructure.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

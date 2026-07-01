@@ -1,4 +1,4 @@
-package com.tecsup.app.micro.product.presentation.controller;
+package com.tecsup.app.micro.product.infrastructure.web.controller;
 
 import com.tecsup.app.micro.product.domain.exception.InvalidProductDataException;
 import com.tecsup.app.micro.product.domain.exception.ProductNotFoundException;

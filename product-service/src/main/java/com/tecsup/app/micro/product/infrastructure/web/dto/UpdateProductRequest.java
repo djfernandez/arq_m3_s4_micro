@@ -1,4 +1,4 @@
-package com.tecsup.app.micro.product.presentation.dto;
+package com.tecsup.app.micro.product.infrastructure.web.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;

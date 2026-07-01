@@ -1,11 +1,12 @@
-package com.tecsup.app.micro.product.presentation.controller;
+package com.tecsup.app.micro.product.infrastructure.web.controller;
+
 
 import com.tecsup.app.micro.product.application.service.ProductApplicationService;
 import com.tecsup.app.micro.product.domain.model.Product;
-import com.tecsup.app.micro.product.presentation.dto.CreateProductRequest;
-import com.tecsup.app.micro.product.presentation.dto.ProductResponse;
-import com.tecsup.app.micro.product.presentation.dto.UpdateProductRequest;
-import com.tecsup.app.micro.product.presentation.mapper.ProductDtoMapper;
+import com.tecsup.app.micro.product.infrastructure.web.dto.CreateProductRequest;
+import com.tecsup.app.micro.product.infrastructure.web.dto.ProductResponse;
+import com.tecsup.app.micro.product.infrastructure.web.dto.UpdateProductRequest;
+import com.tecsup.app.micro.product.infrastructure.web.mapper.ProductDtoMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
