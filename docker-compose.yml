@@ -1,4 +1,4 @@
-
+name : databases
 services:
   # PostgreSQL para User Service
   postgres-user-dev:
