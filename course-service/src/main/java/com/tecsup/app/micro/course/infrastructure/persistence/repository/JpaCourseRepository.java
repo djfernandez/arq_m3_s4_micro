@@ -1,0 +1,12 @@
+package com.tecsup.app.micro.course.infrastructure.persistence.repository;
+
+import com.tecsup.app.micro.course.infrastructure.persistence.entity.CourseEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+/**
+ * Repositorio JPA de Curso
+ */
+public interface JpaCourseRepository extends JpaRepository<CourseEntity, Long> {
+
+  boolean existsByTitle(String title);
+}
