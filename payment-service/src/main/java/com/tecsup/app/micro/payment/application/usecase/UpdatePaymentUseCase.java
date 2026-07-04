@@ -1,11 +1,13 @@
 package com.tecsup.app.micro.payment.application.usecase;
 
+import org.springframework.stereotype.Component;
+
 import com.tecsup.app.micro.payment.domain.exception.PaymentNotFoundException;
 import com.tecsup.app.micro.payment.domain.model.Payment;
 import com.tecsup.app.micro.payment.domain.repository.PaymentRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
@@ -18,8 +20,6 @@ public class UpdatePaymentUseCase {
     Payment existing = paymentRepository.findById(id).orElseThrow(() -> new PaymentNotFoundException(id));
     if (payment.getStatus() != null)
       existing.setStatus(payment.getStatus());
-    if (payment.getMethod() != null)
-      existing.setMethod(payment.getMethod());
     return paymentRepository.save(existing);
   }
 }

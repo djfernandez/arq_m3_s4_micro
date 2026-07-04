@@ -15,10 +15,7 @@ public class NotificationResponse {
 
   private Long id;
   private Long userId;
-  private String type;
-  private String subject;
   private String message;
-  private Boolean read;
-  private LocalDateTime sentAt;
-  private LocalDateTime updatedAt;
+  private Boolean sent;
+  private LocalDateTime createdAt;
 }

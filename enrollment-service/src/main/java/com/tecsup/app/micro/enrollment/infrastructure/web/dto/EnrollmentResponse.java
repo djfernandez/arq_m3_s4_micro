@@ -17,6 +17,5 @@ public class EnrollmentResponse {
   private Long userId;
   private Long courseId;
   private String status;
-  private LocalDateTime enrolledAt;
-  private LocalDateTime updatedAt;
+  private LocalDateTime createdAt;
 }

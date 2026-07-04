@@ -1,15 +1,17 @@
 package com.tecsup.app.micro.notification.infrastructure.persistence.repository;
 
-import com.tecsup.app.micro.notification.domain.model.Notification;
-import com.tecsup.app.micro.notification.domain.repository.NotificationRepository;
-import com.tecsup.app.micro.notification.infrastructure.persistence.entity.NotificationEntity;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Repository;
+
+import com.tecsup.app.micro.notification.domain.model.Notification;
+import com.tecsup.app.micro.notification.domain.repository.NotificationRepository;
+import com.tecsup.app.micro.notification.infrastructure.persistence.entity.NotificationEntity;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Repository
 @RequiredArgsConstructor
@@ -34,12 +36,6 @@ public class NotificationRepositoryImpl implements NotificationRepository {
   }
 
   @Override
-  public List<Notification> findByUserIdAndRead(Long userId, Boolean read) {
-    return jpaNotificationRepository.findByUserIdAndRead(userId, read).stream().map(this::toDomain)
-        .collect(Collectors.toList());
-  }
-
-  @Override
   public Notification save(Notification notification) {
     return toDomain(jpaNotificationRepository.save(toEntity(notification)));
   }
@@ -53,12 +49,9 @@ public class NotificationRepositoryImpl implements NotificationRepository {
     return Notification.builder()
         .id(entity.getId())
         .userId(entity.getUserId())
-        .type(entity.getType())
-        .subject(entity.getSubject())
         .message(entity.getMessage())
-        .read(entity.getRead())
-        .sentAt(entity.getSentAt())
-        .updatedAt(entity.getUpdatedAt())
+        .sent(entity.getSent())
+        .createdAt(entity.getCreatedAt())
         .build();
   }
 
@@ -66,10 +59,8 @@ public class NotificationRepositoryImpl implements NotificationRepository {
     return NotificationEntity.builder()
         .id(notification.getId())
         .userId(notification.getUserId())
-        .type(notification.getType())
-        .subject(notification.getSubject())
         .message(notification.getMessage())
-        .read(notification.getRead())
+        .sent(notification.getSent())
         .build();
   }
 }

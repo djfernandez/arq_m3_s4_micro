@@ -1,11 +1,11 @@
 package com.tecsup.app.micro.user.domain.model;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 /**
  * User Domain Model (Core Business Entity)
@@ -16,24 +16,23 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    
+
     private Long id;
-    private String name;
+    private String full_name;
     private String email;
-    private String phone;
-    private String address;
+    private String status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    
+
     /**
      * Valida que el usuario tenga los datos mínimos requeridos
      */
     public boolean isValid() {
-        return name != null && !name.trim().isEmpty() 
-            && email != null && !email.trim().isEmpty()
-            && isValidEmail(email);
+        return full_name != null && !full_name.trim().isEmpty()
+                && email != null && !email.trim().isEmpty()
+                && isValidEmail(email);
     }
-    
+
     /**
      * Valida el formato del email
      */

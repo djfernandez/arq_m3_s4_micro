@@ -1,15 +1,17 @@
 package com.tecsup.app.micro.payment.infrastructure.persistence.repository;
 
-import com.tecsup.app.micro.payment.domain.model.Payment;
-import com.tecsup.app.micro.payment.domain.repository.PaymentRepository;
-import com.tecsup.app.micro.payment.infrastructure.persistence.entity.PaymentEntity;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Repository;
+
+import com.tecsup.app.micro.payment.domain.model.Payment;
+import com.tecsup.app.micro.payment.domain.repository.PaymentRepository;
+import com.tecsup.app.micro.payment.infrastructure.persistence.entity.PaymentEntity;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Repository
 @RequiredArgsConstructor
@@ -50,9 +52,7 @@ public class PaymentRepositoryImpl implements PaymentRepository {
         .enrollmentId(entity.getEnrollmentId())
         .amount(entity.getAmount())
         .status(entity.getStatus())
-        .method(entity.getMethod())
         .paidAt(entity.getPaidAt())
-        .updatedAt(entity.getUpdatedAt())
         .build();
   }
 
@@ -62,7 +62,6 @@ public class PaymentRepositoryImpl implements PaymentRepository {
         .enrollmentId(payment.getEnrollmentId())
         .amount(payment.getAmount())
         .status(payment.getStatus())
-        .method(payment.getMethod())
         .build();
   }
 }

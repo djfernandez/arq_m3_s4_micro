@@ -4,13 +4,11 @@
 -- ============================================
 
 CREATE TABLE payments (
-    id            BIGSERIAL PRIMARY KEY,
-    enrollment_id BIGINT NOT NULL,
-    amount        NUMERIC(10, 2) NOT NULL,
-    status        VARCHAR(20) NOT NULL DEFAULT 'PENDING',
-    method        VARCHAR(30),
-    paid_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id              BIGSERIAL PRIMARY KEY,
+    enrollment_id   BIGINT NOT NULL,
+    amount          DECIMAL(10,2) NOT NULL,
+    status          VARCHAR(30) DEFAULT 'APPROVED',
+    paid_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT chk_payment_status CHECK (status IN ('PENDING', 'COMPLETED', 'FAILED', 'REFUNDED')),
     CONSTRAINT chk_amount_positive CHECK (amount > 0)

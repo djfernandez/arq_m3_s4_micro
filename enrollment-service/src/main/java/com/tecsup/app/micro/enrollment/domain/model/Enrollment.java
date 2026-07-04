@@ -1,11 +1,11 @@
 package com.tecsup.app.micro.enrollment.domain.model;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 /**
  * Enrollment Domain Model
@@ -20,8 +20,7 @@ public class Enrollment {
   private Long userId;
   private Long courseId;
   private String status; // ACTIVE, COMPLETED, CANCELLED
-  private LocalDateTime enrolledAt;
-  private LocalDateTime updatedAt;
+  private LocalDateTime createdAt;
 
   public boolean isValid() {
     return userId != null && userId > 0

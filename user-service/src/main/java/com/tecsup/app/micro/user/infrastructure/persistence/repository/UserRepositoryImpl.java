@@ -1,15 +1,17 @@
 package com.tecsup.app.micro.user.infrastructure.persistence.repository;
 
-import com.tecsup.app.micro.user.domain.model.User;
-import com.tecsup.app.micro.user.domain.repository.UserRepository;
-import com.tecsup.app.micro.user.infrastructure.persistence.entity.UserEntity;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Repository;
+
+import com.tecsup.app.micro.user.domain.model.User;
+import com.tecsup.app.micro.user.domain.repository.UserRepository;
+import com.tecsup.app.micro.user.infrastructure.persistence.entity.UserEntity;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementación del repositorio de Usuario (Adaptador)
@@ -19,9 +21,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class UserRepositoryImpl implements UserRepository {
-    
+
     private final JpaUserRepository jpaUserRepository;
-    
+
     @Override
     public List<User> findAll() {
         log.debug("Finding all users");
@@ -30,21 +32,21 @@ public class UserRepositoryImpl implements UserRepository {
                 .map(this::toDomain)
                 .collect(Collectors.toList());
     }
-    
+
     @Override
     public Optional<User> findById(Long id) {
         log.debug("Finding user by id: {}", id);
         return jpaUserRepository.findById(id)
                 .map(this::toDomain);
     }
-    
+
     @Override
     public Optional<User> findByEmail(String email) {
         log.debug("Finding user by email: {}", email);
         return jpaUserRepository.findByEmail(email)
                 .map(this::toDomain);
     }
-    
+
     @Override
     public User save(User user) {
         log.debug("Saving user: {}", user.getEmail());
@@ -52,42 +54,38 @@ public class UserRepositoryImpl implements UserRepository {
         UserEntity savedEntity = jpaUserRepository.save(entity);
         return toDomain(savedEntity);
     }
-    
+
     @Override
     public void deleteById(Long id) {
         log.debug("Deleting user by id: {}", id);
         jpaUserRepository.deleteById(id);
     }
-    
+
     @Override
     public boolean existsByEmail(String email) {
         log.debug("Checking if email exists: {}", email);
         return jpaUserRepository.existsByEmail(email);
     }
-    
+
     // Mappers
-    
+
     private User toDomain(UserEntity entity) {
         return User.builder()
                 .id(entity.getId())
-                .name(entity.getName())
+                .full_name(entity.getFull_name())
                 .email(entity.getEmail())
-                .phone(entity.getPhone())
-                .address(entity.getAddress())
+                .status(entity.getStatus())
                 .createdAt(entity.getCreatedAt())
-                .updatedAt(entity.getUpdatedAt())
                 .build();
     }
-    
+
     private UserEntity toEntity(User user) {
         return UserEntity.builder()
                 .id(user.getId())
-                .name(user.getName())
+                .full_name(user.getFull_name())
                 .email(user.getEmail())
-                .phone(user.getPhone())
-                .address(user.getAddress())
+                .status(user.getStatus())
                 .createdAt(user.getCreatedAt())
-                .updatedAt(user.getUpdatedAt())
                 .build();
     }
 }

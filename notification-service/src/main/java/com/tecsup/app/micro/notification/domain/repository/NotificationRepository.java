@@ -13,8 +13,6 @@ public interface NotificationRepository {
 
   List<Notification> findByUserId(Long userId);
 
-  List<Notification> findByUserIdAndRead(Long userId, Boolean read);
-
   Notification save(Notification notification);
 
   void deleteById(Long id);

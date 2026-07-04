@@ -56,10 +56,8 @@ public class CourseRepositoryImpl implements CourseRepository {
         .id(entity.getId())
         .title(entity.getTitle())
         .description(entity.getDescription())
-        .instructor(entity.getInstructor())
-        .price(entity.getPrice())
+        .published(entity.getPublished())
         .createdAt(entity.getCreatedAt())
-        .updatedAt(entity.getUpdatedAt())
         .build();
   }
 
@@ -68,8 +66,8 @@ public class CourseRepositoryImpl implements CourseRepository {
         .id(course.getId())
         .title(course.getTitle())
         .description(course.getDescription())
-        .instructor(course.getInstructor())
-        .price(course.getPrice())
+        .published(course.getPublished())
+        .createdAt(course.getCreatedAt())
         .build();
   }
 }

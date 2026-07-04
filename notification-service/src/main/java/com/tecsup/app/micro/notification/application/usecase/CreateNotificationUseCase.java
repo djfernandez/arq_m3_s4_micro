@@ -18,7 +18,6 @@ public class CreateNotificationUseCase {
     if (!notification.isValid()) {
       throw new InvalidNotificationDataException("Invalid notification data. UserId, type and message are required.");
     }
-    notification.setRead(false);
     return notificationRepository.save(notification);
   }
 }

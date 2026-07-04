@@ -1,11 +1,11 @@
 package com.tecsup.app.micro.user.infrastructure.web.dto;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 /**
  * DTO de respuesta de usuario
@@ -15,12 +15,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserResponse {
-    
+
     private Long id;
-    private String name;
+    private String full_name;
     private String email;
-    private String phone;
-    private String address;
+    private String status;
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }

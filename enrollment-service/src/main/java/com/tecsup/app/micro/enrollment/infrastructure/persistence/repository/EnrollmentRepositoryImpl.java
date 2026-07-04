@@ -1,15 +1,17 @@
 package com.tecsup.app.micro.enrollment.infrastructure.persistence.repository;
 
-import com.tecsup.app.micro.enrollment.domain.model.Enrollment;
-import com.tecsup.app.micro.enrollment.domain.repository.EnrollmentRepository;
-import com.tecsup.app.micro.enrollment.infrastructure.persistence.entity.EnrollmentEntity;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Repository;
+
+import com.tecsup.app.micro.enrollment.domain.model.Enrollment;
+import com.tecsup.app.micro.enrollment.domain.repository.EnrollmentRepository;
+import com.tecsup.app.micro.enrollment.infrastructure.persistence.entity.EnrollmentEntity;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Repository
 @RequiredArgsConstructor
@@ -62,8 +64,7 @@ public class EnrollmentRepositoryImpl implements EnrollmentRepository {
         .userId(entity.getUserId())
         .courseId(entity.getCourseId())
         .status(entity.getStatus())
-        .enrolledAt(entity.getEnrolledAt())
-        .updatedAt(entity.getUpdatedAt())
+        .createdAt(entity.getCreatedAt())
         .build();
   }
 

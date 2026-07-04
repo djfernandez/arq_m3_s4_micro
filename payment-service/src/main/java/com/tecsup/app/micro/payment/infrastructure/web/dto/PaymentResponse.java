@@ -18,7 +18,5 @@ public class PaymentResponse {
   private Long enrollmentId;
   private BigDecimal amount;
   private String status;
-  private String method;
   private LocalDateTime paidAt;
-  private LocalDateTime updatedAt;
 }

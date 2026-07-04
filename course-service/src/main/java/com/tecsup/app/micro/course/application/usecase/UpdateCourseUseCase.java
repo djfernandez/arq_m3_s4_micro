@@ -22,13 +22,12 @@ public class UpdateCourseUseCase {
         .orElseThrow(() -> new CourseNotFoundException(id));
 
     if (!course.isValid()) {
-      throw new InvalidCourseDataException("Invalid course data. Title, instructor and price are required.");
+      throw new InvalidCourseDataException("Invalid course data. Title and published status are required.");
     }
 
     existing.setTitle(course.getTitle());
     existing.setDescription(course.getDescription());
-    existing.setInstructor(course.getInstructor());
-    existing.setPrice(course.getPrice());
+    existing.setPublished(course.getPublished());
 
     return courseRepository.save(existing);
   }
