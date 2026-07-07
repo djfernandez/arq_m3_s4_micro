@@ -4,6 +4,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import com.tecsup.app.micro.enrollment.domain.event.EnrollmentPublishedEvent;
+import com.tecsup.app.micro.enrollment.domain.event.EnrollmentUpdatedEvent;
 import com.tecsup.app.micro.enrollment.shared.domain.event.DomainEvent;
 import com.tecsup.app.micro.enrollment.shared.infrastructure.config.KafkaConfig;
 
@@ -37,7 +38,7 @@ public class KafkaEventPublisher {
 
   private String getTopicFromEvent(DomainEvent event) {
 
-    if (event instanceof EnrollmentPublishedEvent) {
+    if (event instanceof EnrollmentPublishedEvent || event instanceof EnrollmentUpdatedEvent) {
       return KafkaConfig.ENROLLMENT_EVENT_TOPIC;
     } else {
       throw new IllegalArgumentException("Unknown event type: " +

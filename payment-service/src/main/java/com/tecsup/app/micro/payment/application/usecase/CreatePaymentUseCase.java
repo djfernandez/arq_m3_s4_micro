@@ -53,7 +53,7 @@ public class CreatePaymentUseCase {
     log.info("Publishing PaymentApprovedEvent for paymentId: {}", savedPayment.getId());
     eventPublisher.publish(event);
 
-    enrollmentClient.getEnrollmentById(savedPayment.getEnrollmentId(), new EnrollmentDTO("CONFIRMED"));
+    enrollmentClient.getEnrollmentById(savedPayment.getEnrollmentId(), new EnrollmentDTO("COMPLETED"));
 
     return savedPayment;
   }

@@ -4,6 +4,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import com.tecsup.app.micro.enrollment.domain.event.EnrollmentPublishedEvent;
+import com.tecsup.app.micro.enrollment.domain.event.EnrollmentUpdatedEvent;
 import com.tecsup.app.micro.enrollment.shared.domain.event.DomainEvent;
 import com.tecsup.app.micro.enrollment.shared.infrastructure.config.KafkaConfig;
 
@@ -19,6 +20,8 @@ public class EnrollmentEventHandler {
   public void handleCourseEvents(DomainEvent event) {
     if (event instanceof EnrollmentPublishedEvent) {
       this.handleEnrollmentPublished((EnrollmentPublishedEvent) event);
+    } else if (event instanceof EnrollmentUpdatedEvent) {
+      this.handleEnrollmentUpdated((EnrollmentUpdatedEvent) event);
     } else {
       throw new RuntimeException("Invalid event type " + event.getClass());
     }
@@ -27,6 +30,10 @@ public class EnrollmentEventHandler {
   private void handleEnrollmentPublished(EnrollmentPublishedEvent event) {
     log.info("[Kafka] Enrollment published event received: {}", event);
 
+  }
+
+  private void handleEnrollmentUpdated(EnrollmentUpdatedEvent event) {
+    log.info("[Kafka] Enrollment updated event received: {}", event);
   }
 
 }

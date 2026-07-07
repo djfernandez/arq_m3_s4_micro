@@ -4,6 +4,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import com.tecsup.app.micro.payment.domain.event.PaymentApprovedEvent;
+import com.tecsup.app.micro.payment.domain.event.PaymentRejectedEvent;
 import com.tecsup.app.micro.payment.shared.domain.event.DomainEvent;
 import com.tecsup.app.micro.payment.shared.infrastructure.config.KafkaConfig;
 
@@ -37,7 +38,7 @@ public class KafkaEventPublisher {
 
   private String getTopicFromEvent(DomainEvent event) {
 
-    if (event instanceof PaymentApprovedEvent) {
+    if (event instanceof PaymentApprovedEvent || event instanceof PaymentRejectedEvent) {
       return KafkaConfig.PAYMENT_EVENT_TOPIC;
     } else {
       throw new IllegalArgumentException("Unknown event type: " +

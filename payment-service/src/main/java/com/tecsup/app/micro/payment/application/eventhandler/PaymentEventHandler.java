@@ -4,6 +4,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import com.tecsup.app.micro.payment.domain.event.PaymentApprovedEvent;
+import com.tecsup.app.micro.payment.domain.event.PaymentRejectedEvent;
 import com.tecsup.app.micro.payment.shared.domain.event.DomainEvent;
 import com.tecsup.app.micro.payment.shared.infrastructure.config.KafkaConfig;
 
@@ -19,6 +20,8 @@ public class PaymentEventHandler {
   public void handlePaymentEvents(DomainEvent event) {
     if (event instanceof PaymentApprovedEvent) {
       this.handlePaymentPublished((PaymentApprovedEvent) event);
+    } else if (event instanceof PaymentRejectedEvent) {
+      this.handlePaymentRejected((PaymentRejectedEvent) event);
     } else {
       throw new RuntimeException("Invalid event type " + event.getClass());
     }
@@ -26,7 +29,10 @@ public class PaymentEventHandler {
 
   private void handlePaymentPublished(PaymentApprovedEvent event) {
     log.info("[Kafka] Payment published event received: {}", event);
+  }
 
+  private void handlePaymentRejected(PaymentRejectedEvent event) {
+    log.info("[Kafka] Payment rejected event received: {}", event);
   }
 
 }

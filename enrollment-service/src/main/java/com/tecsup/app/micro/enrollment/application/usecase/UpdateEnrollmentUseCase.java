@@ -37,7 +37,8 @@ public class UpdateEnrollmentUseCase {
 
     NotificationDTO notification = new NotificationDTO(
         updatedEnrollment.getUserId().toString(),
-        updatedEnrollment.getCourseId().toString());
+        enrollment.getStatus() != null ? "Your enrollment status has been updated to: " + enrollment.getStatus()
+            : "Your enrollment has been updated.");
 
     EnrollmentUpdatedEvent event = new EnrollmentUpdatedEvent(
         updatedEnrollment.getCourseId().toString(),
