@@ -27,6 +27,9 @@ public class NotificationRepositoryImpl implements NotificationRepository {
 
   @Override
   public Optional<Notification> findById(Long id) {
+    if (id == null) {
+      return Optional.empty();
+    }
     return jpaNotificationRepository.findById(id).map(this::toDomain);
   }
 
@@ -42,7 +45,9 @@ public class NotificationRepositoryImpl implements NotificationRepository {
 
   @Override
   public void deleteById(Long id) {
-    jpaNotificationRepository.deleteById(id);
+    if (id != null) {
+      jpaNotificationRepository.deleteById(id);
+    }
   }
 
   private Notification toDomain(NotificationEntity entity) {
@@ -61,6 +66,7 @@ public class NotificationRepositoryImpl implements NotificationRepository {
         .userId(notification.getUserId())
         .message(notification.getMessage())
         .sent(notification.getSent())
+        .createdAt(notification.getCreatedAt())
         .build();
   }
 }

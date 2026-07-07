@@ -51,5 +51,6 @@ public class UserEntity {
     protected void onCreate() {
         LocalDateTime now = LocalDateTime.now();
         createdAt = now;
+        status = "ACTIVE"; // Set default status to ACTIVE
     }
 }

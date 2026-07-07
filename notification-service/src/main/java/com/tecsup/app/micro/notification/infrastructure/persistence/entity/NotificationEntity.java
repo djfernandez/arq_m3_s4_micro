@@ -17,9 +17,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "notifications", indexes = {
-    @Index(name = "idx_notifications_user_id", columnList = "user_id"),
-    @Index(name = "idx_notifications_read", columnList = "read"),
-    @Index(name = "idx_notifications_type", columnList = "type")
+    @Index(name = "idx_notifications_user_id", columnList = "user_id")
 })
 @Data
 @Builder

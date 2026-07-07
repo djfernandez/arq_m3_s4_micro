@@ -1,12 +1,14 @@
 package com.tecsup.app.micro.course.application.usecase;
 
+import org.springframework.stereotype.Component;
+
 import com.tecsup.app.micro.course.domain.exception.DuplicateCourseException;
 import com.tecsup.app.micro.course.domain.exception.InvalidCourseDataException;
 import com.tecsup.app.micro.course.domain.model.Course;
 import com.tecsup.app.micro.course.domain.repository.CourseRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
@@ -26,6 +28,9 @@ public class CreateCourseUseCase {
       throw new DuplicateCourseException(course.getTitle());
     }
 
-    return courseRepository.save(course);
+    Course savedCourse = courseRepository.save(course);
+    log.info("Course created with ID: {}", savedCourse.getId());
+
+    return savedCourse;
   }
 }

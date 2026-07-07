@@ -1,13 +1,19 @@
 package com.tecsup.app.micro.notification.application.service;
 
-import com.tecsup.app.micro.notification.application.usecase.*;
-import com.tecsup.app.micro.notification.domain.model.Notification;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.tecsup.app.micro.notification.application.usecase.CreateNotificationUseCase;
+import com.tecsup.app.micro.notification.application.usecase.GetAllNotificationsUseCase;
+import com.tecsup.app.micro.notification.application.usecase.GetNotificationByIdUseCase;
+import com.tecsup.app.micro.notification.application.usecase.PublishCourseUseCase;
+import com.tecsup.app.micro.notification.application.usecase.PublishEnrollmentUseCase;
+import com.tecsup.app.micro.notification.domain.model.Notification;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -17,8 +23,10 @@ public class NotificationApplicationService {
   private final GetAllNotificationsUseCase getAllNotificationsUseCase;
   private final GetNotificationByIdUseCase getNotificationByIdUseCase;
   private final CreateNotificationUseCase createNotificationUseCase;
-  private final MarkNotificationReadUseCase markNotificationReadUseCase;
-  private final DeleteNotificationUseCase deleteNotificationUseCase;
+  // private final MarkNotificationReadUseCase markNotificationReadUseCase;
+  // private final DeleteNotificationUseCase deleteNotificationUseCase;
+  private final PublishCourseUseCase publishCourseUseCase;
+  private final PublishEnrollmentUseCase publishEnrollmentUseCase;
 
   @Transactional(readOnly = true)
   public List<Notification> getAllNotifications() {
@@ -35,13 +43,23 @@ public class NotificationApplicationService {
     return createNotificationUseCase.execute(notification);
   }
 
+  // @Transactional
+  // public Notification markAsRead(Long id) {
+  // return markNotificationReadUseCase.execute(id);
+  // }
+
+  // @Transactional
+  // public void deleteNotification(Long id) {
+  // deleteNotificationUseCase.execute(id);
+  // }
+
   @Transactional
-  public Notification markAsRead(Long id) {
-    return markNotificationReadUseCase.execute(id);
+  public void publishCourse(String id, String userId, String title) {
+    publishCourseUseCase.execute(id, userId, title);
   }
 
   @Transactional
-  public void deleteNotification(Long id) {
-    deleteNotificationUseCase.execute(id);
+  public void publishEnrollment(String id, String userId, String title) {
+    publishEnrollmentUseCase.execute(id, userId, title);
   }
 }

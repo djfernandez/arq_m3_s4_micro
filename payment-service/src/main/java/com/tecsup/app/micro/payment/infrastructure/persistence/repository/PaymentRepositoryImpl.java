@@ -27,6 +27,9 @@ public class PaymentRepositoryImpl implements PaymentRepository {
 
   @Override
   public Optional<Payment> findById(Long id) {
+    if (id == null) {
+      return Optional.empty();
+    }
     return jpaPaymentRepository.findById(id).map(this::toDomain);
   }
 
@@ -43,7 +46,9 @@ public class PaymentRepositoryImpl implements PaymentRepository {
 
   @Override
   public void deleteById(Long id) {
-    jpaPaymentRepository.deleteById(id);
+    if (id != null) {
+      jpaPaymentRepository.deleteById(id);
+    }
   }
 
   private Payment toDomain(PaymentEntity entity) {

@@ -28,6 +28,9 @@ public class EnrollmentRepositoryImpl implements EnrollmentRepository {
 
   @Override
   public Optional<Enrollment> findById(Long id) {
+    if (id == null) {
+      return Optional.empty();
+    }
     return jpaEnrollmentRepository.findById(id).map(this::toDomain);
   }
 
@@ -50,7 +53,9 @@ public class EnrollmentRepositoryImpl implements EnrollmentRepository {
 
   @Override
   public void deleteById(Long id) {
-    jpaEnrollmentRepository.deleteById(id);
+    if (id != null) {
+      jpaEnrollmentRepository.deleteById(id);
+    }
   }
 
   @Override

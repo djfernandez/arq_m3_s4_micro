@@ -10,7 +10,7 @@ CREATE TABLE enrollments (
     status      VARCHAR(40) DEFAULT 'PENDING_PAYMENT',
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT chk_status CHECK (status IN ('ACTIVE', 'COMPLETED', 'CANCELLED')),
+    CONSTRAINT chk_status CHECK (status IN ('ACTIVE', 'COMPLETED', 'CANCELLED', 'PENDING_PAYMENT')),
     CONSTRAINT uq_user_course UNIQUE (user_id, course_id)
 );
 

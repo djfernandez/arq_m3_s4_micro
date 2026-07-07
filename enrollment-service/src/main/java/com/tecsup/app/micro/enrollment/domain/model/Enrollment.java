@@ -18,7 +18,9 @@ public class Enrollment {
 
   private Long id;
   private Long userId;
+  // private String userName;
   private Long courseId;
+  // private String courseName;
   private String status; // ACTIVE, COMPLETED, CANCELLED
   private LocalDateTime createdAt;
 

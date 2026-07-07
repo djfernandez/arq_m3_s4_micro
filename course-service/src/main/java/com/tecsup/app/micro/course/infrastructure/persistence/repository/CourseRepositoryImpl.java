@@ -32,6 +32,9 @@ public class CourseRepositoryImpl implements CourseRepository {
 
   @Override
   public Optional<Course> findById(Long id) {
+    if (id == null) {
+      return Optional.empty();
+    }
     return jpaCourseRepository.findById(id).map(this::toDomain);
   }
 
@@ -43,7 +46,9 @@ public class CourseRepositoryImpl implements CourseRepository {
 
   @Override
   public void deleteById(Long id) {
-    jpaCourseRepository.deleteById(id);
+    if (id != null) {
+      jpaCourseRepository.deleteById(id);
+    }
   }
 
   @Override

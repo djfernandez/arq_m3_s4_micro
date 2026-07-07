@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class UpdateEnrollmentRequest {
 
   @NotBlank(message = "Status is required")
-  @Pattern(regexp = "ACTIVE|COMPLETED|CANCELLED", message = "Status must be ACTIVE, COMPLETED or CANCELLED")
+  @Pattern(regexp = "ACTIVE|COMPLETED|CANCELLED|PENDING_PAYMENT", message = "Status must be ACTIVE, COMPLETED, CANCELLED or PENDING_PAYMENT")
   private String status;
 }

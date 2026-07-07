@@ -47,5 +47,6 @@ public class EnrollmentEntity {
   protected void onCreate() {
     LocalDateTime now = LocalDateTime.now();
     createdAt = now;
+    status = "PENDING_PAYMENT"; // Set default status to PENDING_PAYMENT
   }
 }

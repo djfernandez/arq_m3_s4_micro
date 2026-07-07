@@ -50,6 +50,7 @@ public class CourseEntity {
   protected void onCreate() {
     LocalDateTime now = LocalDateTime.now();
     createdAt = now;
+    published = Boolean.FALSE;
   }
 
 }

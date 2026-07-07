@@ -1,6 +1,7 @@
 package com.tecsup.app.micro.course.infrastructure.web.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,5 +20,8 @@ public class UpdateCourseRequest {
 
   @Size(max = 500, message = "Description must not exceed 500 characters")
   private String description;
+
+  @NotNull(message = "Published status is required")
+  private Boolean published;
 
 }

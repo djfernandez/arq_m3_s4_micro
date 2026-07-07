@@ -24,7 +24,6 @@ public class Course {
   private LocalDateTime createdAt;
 
   public boolean isValid() {
-    return title != null && !title.trim().isEmpty()
-        && published != null;
+    return title != null && !title.trim().isEmpty() && description != null && !description.trim().isEmpty();
   }
 }

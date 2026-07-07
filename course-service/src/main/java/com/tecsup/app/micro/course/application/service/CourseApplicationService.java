@@ -23,6 +23,7 @@ public class CourseApplicationService {
   private final CreateCourseUseCase createCourseUseCase;
   private final UpdateCourseUseCase updateCourseUseCase;
   private final DeleteCourseUseCase deleteCourseUseCase;
+  private final PublishCourseUseCase publishCourseUseCase;
 
   @Transactional(readOnly = true)
   public List<Course> getAllCourses() {
@@ -47,5 +48,10 @@ public class CourseApplicationService {
   @Transactional
   public void deleteCourse(Long id) {
     deleteCourseUseCase.execute(id);
+  }
+
+  @Transactional
+  public Course publishCourse(Long id, Long userId) {
+    return publishCourseUseCase.execute(id, userId);
   }
 }

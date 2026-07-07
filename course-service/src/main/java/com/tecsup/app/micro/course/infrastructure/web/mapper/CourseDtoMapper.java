@@ -5,6 +5,7 @@ import com.tecsup.app.micro.course.infrastructure.web.dto.CreateCourseRequest;
 import com.tecsup.app.micro.course.infrastructure.web.dto.UpdateCourseRequest;
 import com.tecsup.app.micro.course.infrastructure.web.dto.CourseResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -14,8 +15,13 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CourseDtoMapper {
 
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "createdAt", ignore = true)
+  @Mapping(target = "published", ignore = true)
   Course toDomain(CreateCourseRequest request);
 
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "createdAt", ignore = true)
   Course toDomain(UpdateCourseRequest request);
 
   CourseResponse toResponse(Course course);

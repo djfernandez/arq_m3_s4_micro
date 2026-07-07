@@ -26,4 +26,8 @@ public class UpdateUserRequest {
     @Size(max = 100, message = "Email must not exceed 100 characters")
     private String email;
 
+    @NotBlank(message = "Status is required")
+    @Size(max = 30, message = "Status must not exceed 30 characters")
+    private String status;
+
 }

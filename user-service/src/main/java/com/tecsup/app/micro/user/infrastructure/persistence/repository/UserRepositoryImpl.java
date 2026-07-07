@@ -36,6 +36,9 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<User> findById(Long id) {
         log.debug("Finding user by id: {}", id);
+        if (id == null) {
+            return Optional.empty();
+        }
         return jpaUserRepository.findById(id)
                 .map(this::toDomain);
     }
@@ -58,7 +61,9 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void deleteById(Long id) {
         log.debug("Deleting user by id: {}", id);
-        jpaUserRepository.deleteById(id);
+        if (id != null) {
+            jpaUserRepository.deleteById(id);
+        }
     }
 
     @Override
