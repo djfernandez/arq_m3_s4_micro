@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.tecsup.app.micro.course.infrastructure.client.dto.NotificationRequest;
+import com.tecsup.app.micro.course.infrastructure.client.dto.NotificationDTO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,10 +18,10 @@ public class NotificationClient {
   @Value("${notification.service.url}")
   private String notificationServiceUrl;
 
-  public String NotificationPublished(NotificationRequest event) {
+  public String NotificationPublished(NotificationDTO event) {
     log.info("Calling Notification Service to get notification with id: {}", event.getUserId());
 
-    String url = this.notificationServiceUrl + "/api/notifications/publish-course-event";
+    String url = this.notificationServiceUrl + "/api/notifications";
 
     try {
       String notification = restTemplate.postForEntity(url, event, String.class).getBody();

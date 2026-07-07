@@ -1,26 +1,24 @@
-// package com.tecsup.app.micro.notification.application.usecase;
+package com.tecsup.app.micro.notification.application.usecase;
 
-// import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;
 
-// import
-// com.tecsup.app.micro.notification.domain.exception.NotificationNotFoundException;
-// import com.tecsup.app.micro.notification.domain.model.Notification;
-// import
-// com.tecsup.app.micro.notification.domain.repository.NotificationRepository;
+import com.tecsup.app.micro.notification.domain.exception.NotificationNotFoundException;
+import com.tecsup.app.micro.notification.domain.model.Notification;
+import com.tecsup.app.micro.notification.domain.repository.NotificationRepository;
 
-// import lombok.RequiredArgsConstructor;
-// import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-// @Component
-// @RequiredArgsConstructor
-// @Slf4j
-// public class MarkNotificationReadUseCase {
-// private final NotificationRepository notificationRepository;
+@Component
+@RequiredArgsConstructor
+@Slf4j
+public class MarkNotificationReadUseCase {
+  private final NotificationRepository notificationRepository;
 
-// public Notification execute(Long id) {
-// log.debug("Executing MarkNotificationReadUseCase for id: {}", id);
-// Notification notification = notificationRepository.findById(id)
-// .orElseThrow(() -> new NotificationNotFoundException(id));
-// return notificationRepository.save(notification);
-// }
-// }
+  public Notification execute(Long id) {
+    log.debug("Executing MarkNotificationReadUseCase for id: {}", id);
+    Notification notification = notificationRepository.findById(id)
+        .orElseThrow(() -> new NotificationNotFoundException(id));
+    return notificationRepository.save(notification);
+  }
+}

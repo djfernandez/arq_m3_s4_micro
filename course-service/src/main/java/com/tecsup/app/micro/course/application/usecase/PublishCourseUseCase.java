@@ -2,11 +2,13 @@ package com.tecsup.app.micro.course.application.usecase;
 
 import org.springframework.stereotype.Component;
 
+import com.tecsup.app.micro.course.domain.event.CoursePublishedEvent;
 import com.tecsup.app.micro.course.domain.exception.CourseNotFoundException;
 import com.tecsup.app.micro.course.domain.model.Course;
 import com.tecsup.app.micro.course.domain.repository.CourseRepository;
 import com.tecsup.app.micro.course.infrastructure.client.NotificationClient;
-import com.tecsup.app.micro.course.infrastructure.client.dto.NotificationRequest;
+import com.tecsup.app.micro.course.infrastructure.client.dto.NotificationDTO;
+import com.tecsup.app.micro.course.shared.infrastructure.event.KafkaEventPublisher;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +20,7 @@ public class PublishCourseUseCase {
 
   private final CourseRepository courseRepository;
   private final NotificationClient notificationClient;
+  private final KafkaEventPublisher eventPublisher;
 
   public Course execute(Long id, Long userId) {
     log.debug("Executing PublishCourseUseCase for id: {}", id);
@@ -30,15 +33,18 @@ public class PublishCourseUseCase {
 
     log.info("Course updated: {}", saved.getId());
 
-    NotificationRequest event = new NotificationRequest(
-        id.toString(),
+    NotificationDTO notification = new NotificationDTO(
         userId.toString(),
         saved.getTitle());
 
-    notificationClient.NotificationPublished(event);
+    CoursePublishedEvent event = new CoursePublishedEvent(
+        saved.getId().toString(),
+        saved.getTitle(),
+        userId.toString());
 
-    // Aquí podrías publicar el evento si tienes un EventBus o similar
-    // eventPublisher.publish(event);
+    notificationClient.NotificationPublished(notification);
+
+    eventPublisher.publish(event);
 
     return saved;
   }

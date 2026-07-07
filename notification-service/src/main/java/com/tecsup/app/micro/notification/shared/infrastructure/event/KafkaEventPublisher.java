@@ -16,20 +16,7 @@ public class KafkaEventPublisher {
 
   private final KafkaTemplate<String, DomainEvent> kafkaTemplate;
 
-  public void publishCourseEvent(DomainEvent event) {
-
-    log.info("Publishing {}", event);
-
-    String key = event.getKey() != null ? event.getKey() : "";
-
-    this.kafkaTemplate.send(
-        KafkaConfig.COURSE_EVENT_TOPIC,
-        key != null ? key : "",
-        event);
-
-  }
-
-  public void publishNotificationEvent(DomainEvent event) {
+  public void publish(DomainEvent event) {
 
     log.info("Publishing {}", event);
 
@@ -37,19 +24,6 @@ public class KafkaEventPublisher {
 
     this.kafkaTemplate.send(
         KafkaConfig.NOTIFICATION_EVENT_TOPIC,
-        key != null ? key : "",
-        event);
-
-  }
-
-  public void publishEnrollmentEvent(DomainEvent event) {
-
-    log.info("Publishing {}", event);
-
-    String key = event.getKey() != null ? event.getKey() : "";
-
-    this.kafkaTemplate.send(
-        KafkaConfig.ENROLLMENT_EVENT_TOPIC,
         key != null ? key : "",
         event);
 

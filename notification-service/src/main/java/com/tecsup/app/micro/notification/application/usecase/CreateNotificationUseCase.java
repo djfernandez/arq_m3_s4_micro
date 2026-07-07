@@ -33,7 +33,7 @@ public class CreateNotificationUseCase {
         savedNotification.getMessage());
 
     // Publish event
-    eventPublisher.publishNotificationEvent(event);
+    eventPublisher.publish(event);
 
     return savedNotification;
   }

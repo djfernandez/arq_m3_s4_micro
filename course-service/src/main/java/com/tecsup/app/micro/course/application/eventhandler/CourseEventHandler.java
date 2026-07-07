@@ -1,11 +1,11 @@
-package com.tecsup.app.micro.notification.application.eventhandler;
+package com.tecsup.app.micro.course.application.eventhandler;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import com.tecsup.app.micro.notification.domain.event.CoursePublishedEvent;
-import com.tecsup.app.micro.notification.shared.domain.event.DomainEvent;
-import com.tecsup.app.micro.notification.shared.infrastructure.config.KafkaConfig;
+import com.tecsup.app.micro.course.domain.event.CoursePublishedEvent;
+import com.tecsup.app.micro.course.shared.domain.event.DomainEvent;
+import com.tecsup.app.micro.course.shared.infrastructure.config.KafkaConfig;
 
 import lombok.extern.slf4j.Slf4j;
 

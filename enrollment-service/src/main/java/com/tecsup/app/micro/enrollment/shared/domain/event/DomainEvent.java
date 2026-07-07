@@ -1,4 +1,4 @@
-package com.tecsup.app.micro.course.shared.domain.event;
+package com.tecsup.app.micro.enrollment.shared.domain.event;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

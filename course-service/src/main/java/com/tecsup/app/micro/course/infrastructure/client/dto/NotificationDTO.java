@@ -1,5 +1,13 @@
 package com.tecsup.app.micro.course.infrastructure.client.dto;
 
-public class NotificationDTO {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class NotificationDTO {
+  private String userId;
+  private String message;
 }

@@ -1,11 +1,11 @@
-package com.tecsup.app.micro.course.shared.infrastructure.event;
+package com.tecsup.app.micro.enrollment.shared.infrastructure.event;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import com.tecsup.app.micro.course.domain.event.CoursePublishedEvent;
-import com.tecsup.app.micro.course.shared.domain.event.DomainEvent;
-import com.tecsup.app.micro.course.shared.infrastructure.config.KafkaConfig;
+import com.tecsup.app.micro.enrollment.domain.event.EnrollmentPublishedEvent;
+import com.tecsup.app.micro.enrollment.shared.domain.event.DomainEvent;
+import com.tecsup.app.micro.enrollment.shared.infrastructure.config.KafkaConfig;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,8 +37,8 @@ public class KafkaEventPublisher {
 
   private String getTopicFromEvent(DomainEvent event) {
 
-    if (event instanceof CoursePublishedEvent) {
-      return KafkaConfig.COURSE_EVENT_TOPIC;
+    if (event instanceof EnrollmentPublishedEvent) {
+      return KafkaConfig.ENROLLMENT_EVENT_TOPIC;
     } else {
       throw new IllegalArgumentException("Unknown event type: " +
           event.getEventType());

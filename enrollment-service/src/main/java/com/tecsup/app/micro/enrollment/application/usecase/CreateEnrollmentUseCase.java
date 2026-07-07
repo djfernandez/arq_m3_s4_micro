@@ -2,6 +2,7 @@ package com.tecsup.app.micro.enrollment.application.usecase;
 
 import org.springframework.stereotype.Component;
 
+import com.tecsup.app.micro.enrollment.domain.event.EnrollmentPublishedEvent;
 import com.tecsup.app.micro.enrollment.domain.exception.DuplicateEnrollmentException;
 import com.tecsup.app.micro.enrollment.domain.exception.InvalidEnrollmentDataException;
 import com.tecsup.app.micro.enrollment.domain.model.Enrollment;
@@ -10,8 +11,9 @@ import com.tecsup.app.micro.enrollment.infrastructure.client.CourseClient;
 import com.tecsup.app.micro.enrollment.infrastructure.client.NotificationClient;
 import com.tecsup.app.micro.enrollment.infrastructure.client.UserClient;
 import com.tecsup.app.micro.enrollment.infrastructure.client.dto.CourseDTO;
-import com.tecsup.app.micro.enrollment.infrastructure.client.dto.NotificationRequest;
+import com.tecsup.app.micro.enrollment.infrastructure.client.dto.NotificationDTO;
 import com.tecsup.app.micro.enrollment.infrastructure.client.dto.UserDTO;
+import com.tecsup.app.micro.enrollment.shared.infrastructure.event.KafkaEventPublisher;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CreateEnrollmentUseCase {
 
   private final EnrollmentRepository enrollmentRepository;
+  private final KafkaEventPublisher eventPublisher;
   private final NotificationClient notificationClient;
   private final UserClient userClient;
   private final CourseClient courseClient;
@@ -55,12 +58,16 @@ public class CreateEnrollmentUseCase {
     Enrollment savedEnrollment = enrollmentRepository.save(enrollment);
     log.info("Enrollment created successfully with id: {}", savedEnrollment.getId());
 
-    NotificationRequest event = new NotificationRequest(
-        savedEnrollment.getCourseId().toString(),
+    NotificationDTO notification = new NotificationDTO(
         savedEnrollment.getUserId().toString(),
         course.getTitle());
 
-    notificationClient.NotificationPublished(event);
+    EnrollmentPublishedEvent event = new EnrollmentPublishedEvent(savedEnrollment.getCourseId().toString(),
+        savedEnrollment.getUserId().toString(), savedEnrollment.getStatus());
+
+    notificationClient.NotificationPublished(notification);
+
+    eventPublisher.publish(event);
 
     return savedEnrollment;
   }
