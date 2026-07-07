@@ -58,7 +58,7 @@ public class CourseApplicationService {
   }
 
   @Transactional
-  public Course publishCourse(Long id, Long userId) {
-    return publishCourseUseCase.execute(id, userId);
+  public Course publishCourse(Long id) {
+    return publishCourseUseCase.execute(id);
   }
 }

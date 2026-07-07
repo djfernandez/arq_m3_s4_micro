@@ -62,8 +62,10 @@ public class CreateEnrollmentUseCase {
         savedEnrollment.getUserId().toString(),
         course.getTitle());
 
-    EnrollmentPublishedEvent event = new EnrollmentPublishedEvent(savedEnrollment.getCourseId().toString(),
-        savedEnrollment.getUserId().toString(), savedEnrollment.getStatus());
+    EnrollmentPublishedEvent event = new EnrollmentPublishedEvent(
+        savedEnrollment.getCourseId().toString(),
+        savedEnrollment.getUserId().toString(),
+        savedEnrollment.getStatus());
 
     notificationClient.NotificationPublished(notification);
 

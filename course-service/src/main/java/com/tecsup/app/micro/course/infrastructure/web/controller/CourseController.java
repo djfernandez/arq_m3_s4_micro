@@ -17,7 +17,6 @@ import com.tecsup.app.micro.course.application.service.CourseApplicationService;
 import com.tecsup.app.micro.course.domain.model.Course;
 import com.tecsup.app.micro.course.infrastructure.web.dto.CourseResponse;
 import com.tecsup.app.micro.course.infrastructure.web.dto.CreateCourseRequest;
-import com.tecsup.app.micro.course.infrastructure.web.dto.PublishCourseRequest;
 import com.tecsup.app.micro.course.infrastructure.web.dto.UpdateCourseRequest;
 import com.tecsup.app.micro.course.infrastructure.web.mapper.CourseDtoMapper;
 
@@ -69,10 +68,10 @@ public class CourseController {
     return ResponseEntity.ok(courseDtoMapper.toResponse(updated));
   }
 
-  @PutMapping("/publish")
-  public ResponseEntity<CourseResponse> publishCourse(@Valid @RequestBody PublishCourseRequest request) {
-    log.info("REST request to publish course with id: {}", request.getId());
-    Course updated = courseApplicationService.publishCourse(request.getId(), request.getUserId());
+  @PutMapping("/{id}/publish")
+  public ResponseEntity<CourseResponse> publishCourse(@PathVariable Long id) {
+    log.info("REST request to publish course with id: {}", id);
+    Course updated = courseApplicationService.publishCourse(id);
     return ResponseEntity.ok(courseDtoMapper.toResponse(updated));
   }
 

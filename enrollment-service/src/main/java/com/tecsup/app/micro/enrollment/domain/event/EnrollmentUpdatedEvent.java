@@ -1,6 +1,6 @@
-package com.tecsup.app.micro.course.domain.event;
+package com.tecsup.app.micro.enrollment.domain.event;
 
-import com.tecsup.app.micro.course.shared.domain.event.DomainEvent;
+import com.tecsup.app.micro.enrollment.shared.domain.event.DomainEvent;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,14 +11,13 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor(force = true)
-public class CoursePublishedEvent extends DomainEvent {
-
+public class EnrollmentUpdatedEvent extends DomainEvent {
   private final String courseId;
-  private final String title;
+  private final String userId;
+  private final String status;
 
   @Override
   public String getKey() { // SOBREESCRIBIR EL METODO
     return this.courseId;
   }
-
 }

@@ -10,7 +10,7 @@ CREATE TABLE payments (
     status          VARCHAR(30) DEFAULT 'APPROVED',
     paid_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT chk_payment_status CHECK (status IN ('PENDING', 'COMPLETED', 'FAILED', 'REFUNDED')),
+    CONSTRAINT chk_payment_status CHECK (status IN ('PENDING', 'COMPLETED', 'FAILED', 'REFUNDED', 'APPROVED', 'REJECTED')),
     CONSTRAINT chk_amount_positive CHECK (amount > 0)
 );
 
